@@ -2,4 +2,4 @@
 echo "[cron] Installing kill script to cron."
 mkdir -p /etc/crontabs
 echo "0 5 * * * /app/cronkill.sh" >> /etc/crontabs/root
-cron -c /etc/crontabs
+cron
