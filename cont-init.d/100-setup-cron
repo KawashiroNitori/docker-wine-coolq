@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv /bin/bash
-echo "[cron] Install kill script to cron."
-mkdir /etc/crontabs
+echo "[cron] Installing kill script to cron."
+mkdir -p /etc/crontabs
 echo "0 5 * * * /app/cronkill.sh" >> /etc/crontabs/root
-/usr/sbin/crond -c /etc/crontabs
+cron -c /etc/crontabs
