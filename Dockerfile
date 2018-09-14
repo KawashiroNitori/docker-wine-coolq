@@ -1,10 +1,12 @@
 FROM oott123/novnc:v0.1.1
 
+ENV DEBIAN_FRONTEND=noninteractive
+
 RUN apt-get update && \
     apt-get install -y \
         software-properties-common apt-transport-https \
         cabextract unzip python-numpy \
-        language-pack-zh-hans ttf-wqy-microhei && \
+        language-pack-zh-hans ttf-wqy-microhei cron tzdata && \
     # 安装 wine
     wget -nc https://dl.winehq.org/wine-builds/Release.key -O /tmp/wine.key && \
     apt-key add /tmp/wine.key && rm -f /tmp/wine.key && \
@@ -15,7 +17,8 @@ RUN apt-get update && \
     wget -O /usr/local/bin/winetricks https://raw.githubusercontent.com/Winetricks/winetricks/master/src/winetricks && \
     chmod 755 /usr/local/bin/winetricks && \
     apt-get clean && \
-    rm -rf /var/lib/apt/lists
+    rm -rf /var/lib/apt/lists && \
+    ln -fs /usr/share/zoneinfo/Asia/Shanghai /etc/localtime
 
 COPY winhttp_2ksp4.verb /tmp/winhttp_2ksp4.verb
 COPY coolq.reg /tmp/coolq.reg
@@ -45,6 +48,7 @@ ENV LANG=zh_CN.UTF-8 \
     COOLQ_URL=http://dlsec.cqp.me/cqp-full
 
 COPY vncmain.sh /app/vncmain.sh
+COPY cronkill.sh /app/cronkill.sh
 COPY cq /usr/local/bin/cq
 COPY cont-init.d /etc/cont-init.d/
 
