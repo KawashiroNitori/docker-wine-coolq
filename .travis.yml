@@ -5,6 +5,22 @@ sudo: required
 services:
 - docker
 
+branches:
+  only:
+  - master
+
 before_install:
-- docker build -t kawashironitori/coolq .
-- docker run -d -p 127.0.0.1:9000:9000 --name coolq kawashironitori/coolq
+  - 'if [ ${TRAVIS_PULL_REQUEST} != "false" ]; then
+       IMAGE_NAME=kawashironitori/docker-wine-coolq:mr-$TRAVIS_PULL_REQUEST
+     else
+       IMAGE_NAME=kawashironitori/docker-wine-coolq:latest
+     fi'
+
+install:
+- docker build -t $IMAGE_NAME .
+
+before_script:
+- echo "$DOCKER_PASSWORD" | docker login -u "$DOCKER_USERNAME" --password-stdin
+
+script:
+- docker push $IMAGE_NAME
