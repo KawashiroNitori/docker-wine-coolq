@@ -1,5 +1,9 @@
 #!/usr/bin/with-contenv /bin/bash
 echo "[cron] Installing kill script to cron."
+if [ -z $CQKILL_CRON ]; then
+  echo "[cron] cron environment variable is not exist, exit."
+  exit 0
+fi
 echo "$CQKILL_CRON user /app/cronkill.sh" >> /etc/crontab
 echo "[cron] Finished."
 cron
