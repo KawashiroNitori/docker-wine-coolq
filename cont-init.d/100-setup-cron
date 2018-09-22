@@ -1,5 +1,5 @@
 #!/usr/bin/with-contenv /bin/bash
 echo "[cron] Installing kill script to cron."
-echo "0 5 * * * user /app/cronkill.sh" >> /etc/crontab
+echo "$CQKILL_CRON user /app/cronkill.sh" >> /etc/crontab
 echo "[cron] Finished."
 cron
