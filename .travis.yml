@@ -11,9 +11,9 @@ branches:
 
 before_install:
   - 'if [ ${TRAVIS_PULL_REQUEST} != "false" ]; then
-       IMAGE_NAME=kawashironitori/docker-wine-coolq:mr-$TRAVIS_PULL_REQUEST
+       IMAGE_NAME=kawashironitori/docker-wine-coolq:mr-$TRAVIS_PULL_REQUEST;
      else
-       IMAGE_NAME=kawashironitori/docker-wine-coolq:latest
+       IMAGE_NAME=kawashironitori/docker-wine-coolq:latest;
      fi'
 
 install:
