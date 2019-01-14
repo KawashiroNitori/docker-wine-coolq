@@ -8,7 +8,7 @@ RUN apt-get update && \
         cabextract unzip python-numpy \
         language-pack-zh-hans ttf-wqy-microhei cron tzdata && \
     # 安装 wine
-    wget -nc https://dl.winehq.org/wine-builds/Release.key -O /tmp/wine.key && \
+    wget -nc https://dl.winehq.org/wine-builds/winehq.key -O /tmp/wine.key && \
     apt-key add /tmp/wine.key && rm -f /tmp/wine.key && \
     apt-add-repository -y https://dl.winehq.org/wine-builds/ubuntu && \
     dpkg --add-architecture i386 && \
