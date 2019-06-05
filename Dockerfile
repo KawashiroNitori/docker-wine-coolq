@@ -30,10 +30,11 @@ RUN sudo -Hu user WINEARCH=win32 /usr/bin/wine wineboot && \
     sudo -Hu user /usr/bin/wine regedit.exe /s /tmp/coolq.reg && \
     sudo -Hu user wineboot && \
     echo 'quiet=on' > /etc/wgetrc && \
-    sudo -Hu user /usr/local/bin/winetricks -q win7 && \
+    sudo -Hu user /usr/local/bin/winetricks -q winxp && \
     sudo -Hu user /usr/local/bin/winetricks -q /tmp/winhttp_2ksp4.verb && \
     sudo -Hu user /usr/local/bin/winetricks -q msscript && \
     sudo -Hu user /usr/local/bin/winetricks -q vcrun2017 && \
+    sudo -Hu user /usr/local/bin/winetricks -q win7 && \
     sudo -Hu user /usr/local/bin/winetricks -q fontsmooth=rgb && \
     wget https://dlsec.cqp.me/docker-simsun -O /tmp/simsun.zip && \
     rm /etc/wgetrc && \
